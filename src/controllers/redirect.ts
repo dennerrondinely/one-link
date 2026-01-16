@@ -17,7 +17,7 @@ class Redirect {
     );
 
     if (req.useragent?.isMobile) {
-      res.render("redirect", {
+      return res.render("redirect", {
         appUrl: link.appUrl,
         webUrl: link.webUrl,
         appStore: link.appStore,
@@ -26,9 +26,9 @@ class Redirect {
         isiOS: req.useragent?.isiOS,
         layout: "download",
       });
-    } else {
-      res.redirect(link.webUrl);
     }
+    
+    res.redirect(link.webUrl);
   }
 }
 
