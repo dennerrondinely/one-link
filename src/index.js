@@ -40,7 +40,6 @@ const links = {
   },
 };
 
-// Página inicial com informações
 app.get("/", (req, res) => {
   res.render("home", {
     isMobile: req.useragent.isMobile ? "Sim" : "Não",
@@ -73,9 +72,9 @@ app.get("/:id", (req, res) => {
       playStore: link.playStore,
       title: `Redirecionando para ${link.name}...`,
       isiOS: req.useragent.isiOS,
+      layout: "download",
     });
   } else {
-    // Desktop vai direto para a web
     res.redirect(link.webUrl);
   }
 });
