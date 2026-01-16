@@ -1,20 +1,6 @@
-const express = require("express");
-const useragent = require("express-useragent");
-const { engine } = require("express-handlebars");
-const path = require("path");
-const routes = require("./routes");
-const app = express();
+import { Links } from "./types";
 
-app.use(useragent.express());
-
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
-app.set("views", path.resolve(__dirname, "./views"));
-
-const port = 3000;
-
-// Simulação de banco de dados de links
-const links = {
+const links: Links = {
   "instagram-demo": {
     appUrl: "instagram://user?username=exemplo",
     webUrl: "https://instagram.com/exemplo",
@@ -41,9 +27,4 @@ const links = {
   },
 };
 
-app.use(routes);
-
-app.listen(port, () => {
-  console.log(`🚀 OneLink POC rodando em http://localhost:${port}`);
-  console.log(`📱 Teste no mobile para ver o redirecionamento de apps`);
-});
+export default links;
