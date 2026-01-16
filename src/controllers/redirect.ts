@@ -20,8 +20,7 @@ class Redirect {
       return res.render("redirect", {
         appUrl: link.appUrl,
         webUrl: link.webUrl,
-        appStore: link.appStore,
-        playStore: link.playStore,
+        store: req.useragent?.isiOS ? link.appStore : link.playStore,
         title: `Redirecionando para ${link.name}...`,
         isiOS: req.useragent?.isiOS,
         layout: "download",
