@@ -1,0 +1,16 @@
+<h1>Abrindo {{name}}...</h1>
+<div class="spinner"></div>
+<p id="message">Tentando abrir o aplicativo...</p>
+
+<script>
+  const appUrl = '{{appUrl}}'; const webUrl = '{{webUrl}}'; const
+  timeout = 2000; const start = Date.now(); // Tenta abrir o app window.location
+  = appUrl; // Fallback para web se app não abrir const fallbackTimer =
+  setTimeout(function() { if (Date.now() - start < timeout + 100) {
+  document.getElementById('message').textContent = 'Redirecionando para a
+  loja...'; window.location = {{isiOS}} ? `'{{appStore}}'` :
+  `'{{playStore}}'` }; } }, timeout); // Detecta se saiu da página
+  document.addEventListener('visibilitychange', function() { if
+  (document.hidden) { clearTimeout(fallbackTimer); } });
+  window.addEventListener('blur', function() { clearTimeout(fallbackTimer); });
+</script>
