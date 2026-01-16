@@ -1,19 +1,3 @@
-const express = require("express");
-const useragent = require("express-useragent");
-const { engine } = require("express-handlebars");
-const path = require("path");
-const routes = require("./routes");
-const app = express();
-
-app.use(useragent.express());
-
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
-app.set("views", path.resolve(__dirname, "./views"));
-
-const port = 3000;
-
-// Simulação de banco de dados de links
 const links = {
   "instagram-demo": {
     appUrl: "instagram://user?username=exemplo",
@@ -41,9 +25,35 @@ const links = {
   },
 };
 
-app.use(routes);
+class Redirect {
+  static renderRedirectPage(req, res) {
+    const linkId = req.params.id;
+    const link = links[linkId];
 
-app.listen(port, () => {
-  console.log(`🚀 OneLink POC rodando em http://localhost:${port}`);
-  console.log(`📱 Teste no mobile para ver o redirecionamento de apps`);
-});
+    if (!link) {
+      return res.status(404).render("404", { linkId });
+    }
+
+    console.log(
+      `[${new Date().toISOString()}] ${linkId} - ${
+        req.useragent.isMobile ? "Mobile" : "Desktop"
+      } - ${req.useragent.platform}`
+    );
+
+    if (req.useragent.isMobile) {
+      res.render("redirect", {
+        appUrl: link.appUrl,
+        webUrl: link.webUrl,
+        appStore: link.appStore,
+        playStore: link.playStore,
+        title: `Redirecionando para ${link.name}...`,
+        isiOS: req.useragent.isiOS,
+        layout: "download",
+      });
+    } else {
+      res.redirect(link.webUrl);
+    }
+  }
+}
+
+module.exports = Redirect;
