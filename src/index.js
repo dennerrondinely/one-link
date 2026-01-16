@@ -20,15 +20,13 @@ const links = {
     name: 'WhatsApp Demo'
   },
   'geru': {
-    type: 'app',
-    androidPackage: 'com.geru.app',
-    iosAppId: '1587713422',
-    iosScheme: 'com.geru.app',
+    type: 'simple',
+    appUrl: 'geru://user?id=123',
     webUrl: 'https://geru.com.br',
     name: 'Geru App'
-  }
+  },
 };
-
+geru://user?id=123
 // Página inicial com informações
 app.get("/", (req, res) => {
   res.send(`
