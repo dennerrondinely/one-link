@@ -25,8 +25,8 @@ const links = {
     appUrl: "geru://home",
     webUrl: "https://www.geru.com.br",
     name: "Geru",
-    appStore: "https://apps.apple.com/br/app/geru-empr%C3%A9stimo-pessoal/id1444621362",
-    playStore: "https://play.google.com/store/apps/details?id=br.com.geru",
+    appStore: "https://apps.apple.com/br/app/geru-cr%C3%A9dito-e-pix-parcelado/id1587713422",
+    playStore: "https://play.google.com/store/apps/details?id=com.geru.app&hl=pt_BR&gl=BR",
   },
 };
 
@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
         <ul>
           <li><a href="/instagram-demo" class="link">/instagram-demo</a> - Abre Instagram app ou web</li>
           <li><a href="/whatsapp-demo" class="link">/whatsapp-demo</a> - Abre WhatsApp app ou web</li>
+          <li><a href="/geru" class="link">/geru</a> - Abre Geru app ou web</li>
         </ul>
 
         <h3>Como usar:</h3>
