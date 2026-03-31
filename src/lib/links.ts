@@ -1,13 +1,20 @@
-import { Links } from "./types";
+export interface Link {
+  appUrl: string;
+  webUrl: string;
+  name: string;
+  appStore: string;
+  playStore: string;
+}
 
-const links: Links = {
+export type Links = Record<string, Link>;
+
+export const links: Links = {
   "instagram-demo": {
     appUrl: "instagram://user?username=exemplo",
     webUrl: "https://instagram.com/exemplo",
     name: "Instagram Demo",
     appStore: "https://apps.apple.com/app/instagram/id389801252",
-    playStore:
-      "https://play.google.com/store/apps/details?id=com.instagram.android",
+    playStore: "https://play.google.com/store/apps/details?id=com.instagram.android",
   },
   "whatsapp-demo": {
     appUrl: "whatsapp://send?phone=5511999999999",
@@ -26,5 +33,3 @@ const links: Links = {
       "https://play.google.com/store/apps/details?id=com.geru.app&hl=pt_BR&gl=BR",
   },
 };
-
-export default links;
